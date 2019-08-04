@@ -57,7 +57,7 @@ class SignIn extends React.Component {
   }
 
   _onClick = async () => {
-    this.userSession.redirectToSignIn('/app/');
+    this.userSession.redirectToSignIn();
   }
 
   render () {
