@@ -16,6 +16,7 @@ import { APP_NAME } from '../constants/appInfo';
 import { connect } from 'react-redux';
 
 import { UserSession } from 'blockstack';
+import BlockStackUtils from '../lib/BlockStackUtils';
 
 class Navbar extends React.Component {
   constructor (props) {
@@ -26,7 +27,7 @@ class Navbar extends React.Component {
   }
 
   _renderSignInOrLogOut = (classes) => {
-    if (this.userSession.isUserSignedIn()) {
+    if (BlockStackUtils.isSignedInOrPending(this)) {
       return (
         <Button color="inherit">
           <Link className={classes.iconLink} to="/log-out/">

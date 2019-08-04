@@ -23,6 +23,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Select from 'react-select';
 import { UserSession } from 'blockstack';
+import BlockStackUtils from '../lib/BlockStackUtils';
 
 import { CRYPTOCOMPARE_API_KEY } from '../constants/appInfo';
 import cryptocompare from 'cryptocompare';
@@ -395,7 +396,8 @@ class ResultForm extends React.Component {
 
   render () {
     const { classes } = this.props;
-    if (!this.userSession.isUserSignedIn()) {
+    
+    if (!BlockStackUtils.isSignedInOrPending(this)) {
       return (
         <Redirect to='/sign-in/' />
       )
