@@ -28,9 +28,7 @@ class Navbar extends React.Component {
     this.state = {};
     // BlockstackUtils.init(this);
     this.appConfig = new AppConfig()
-    this.userSession = new UserSession({
-      appConfig: this.appConfig
-    })
+    this.userSession = new UserSession()
     window.userSession = this.userSession;
   }
 
