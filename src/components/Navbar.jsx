@@ -55,8 +55,6 @@ class Navbar extends React.Component {
   render () {
     const { classes } = this.props;
 
-    console.log('Signed In', this.userSession.isUserSignedIn());
-
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
