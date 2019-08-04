@@ -20,10 +20,8 @@ import { UserSession } from 'blockstack';
 class Navbar extends React.Component {
   constructor (props) {
     super(props);
-
-    this.state = {};
+    
     this.userSession = new UserSession();
-    // window.userSession = this.userSession;
   }
 
   _renderSignInOrLogOut = (classes) => {
@@ -54,6 +52,8 @@ class Navbar extends React.Component {
 
   render () {
     const { classes } = this.props;
+
+    console.log('Signed In', this.userSession.isUserSignedIn());
 
     return (
       <div className={classes.root}>
