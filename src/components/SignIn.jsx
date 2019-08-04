@@ -22,25 +22,57 @@ import store from '../store/index';
 
 import BlockstackUtils from '../lib/BlockstackUtils';
 
+import { 
+  UserSession,
+  AppConfig
+} from 'blockstack';
+
 class SignIn extends React.Component {
-  _onClick = async () => {
-    BlockstackUtils.signIn(this, '/app/');
+  constructor (props) {
+      super(props)
+
+      this.appConfig = new AppConfig()
+      this.userSession = new UserSession({
+          appConfig: this.appConfig
+      })
+
+      this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick () {
+      this.userSession.redirectToSignIn()
   }
 
   render () {
-    const { classes } = this.props;
-
-    return (
-      <Box align="center">
-        <Header>Sign In</Header>
-        <Button align="center" onClick={e => this._onClick(e)} size="large" className={classes.button} variant="contained" color="primary">
-          <Typography variant="button">
-            Sign In With Blockstack
-          </Typography>
-        </Button>
-      </Box>
-    )
+      return (
+          <div className="center container">
+              <h2>Sign In</h2>
+              <button className="btn-large blue" onClick={this.handleClick}>
+                  Sign In With Blockstack
+                  <i className="material-icons left">exit_to_app</i>
+              </button>
+              <div className="row"></div>
+          </div>
+      )
   }
+  // _onClick = async () => {
+  //   BlockstackUtils.signIn(this, '/app/');
+  // }
+
+  // render () {
+  //   const { classes } = this.props;
+
+  //   return (
+  //     <Box align="center">
+  //       <Header>Sign In</Header>
+  //       <Button align="center" onClick={e => this._onClick(e)} size="large" className={classes.button} variant="contained" color="primary">
+  //         <Typography variant="button">
+  //           Sign In With Blockstack
+  //         </Typography>
+  //       </Button>
+  //     </Box>
+  //   )
+  // }
 }
 
 const styles = (theme => ({
