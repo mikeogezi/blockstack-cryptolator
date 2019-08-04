@@ -11,7 +11,7 @@ export default class BlockStackUtils {
       session.handlePendingSignIn()
         .then(user => console.log('User Data', user))
         .catch(err => console.error(err))
-      return false;
+      return true;
     }
     else {
       return false;
