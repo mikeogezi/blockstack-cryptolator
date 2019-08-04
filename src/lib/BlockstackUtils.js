@@ -5,8 +5,8 @@ import {
 
 export default class BlockstackUtils {
   static init (that) {
-    that.appConfig = AppConfig();
-    that.userSession = UserSession();
+    that.appConfig = new AppConfig();
+    that.userSession = new UserSession();
   }
 
   static isSignedIn (that) {

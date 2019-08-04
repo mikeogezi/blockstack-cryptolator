@@ -80,10 +80,10 @@ class Landing extends React.Component {
                         </CardContent>
                         <CardActions className={classes.cardActions}>
                             <Button size="large" variant="contained" color="secondary" align="center" className={classes.ctaButton}>
-                                <Link className={classes.iconLink} to="/cryptolator/app/">
+                                <Link className={classes.iconLink} to="/app/">
                                     Go To Converter
                                 </Link>
-                                <Link className={classes.iconLink} to="/cryptolator/app/">
+                                <Link className={classes.iconLink} to="/app/">
                                     <OpenInNew className={classes.buttonIcon} />
                                 </Link>
                             </Button>

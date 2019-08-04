@@ -28,10 +28,10 @@ class Navbar extends React.Component {
     if (BlockstackUtils.isSignedIn(this)) {
       return (
         <Button color="inherit">
-          <Link className={classes.iconLink} to="/cryptolator/log-out/">
+          <Link className={classes.iconLink} to="/log-out/">
             <ExitToApp className={classes.iconInButton} />
           </Link>
-          <Link className={classes.link} to="/cryptolator/log-out/">
+          <Link className={classes.link} to="/log-out/">
             Log Out
           </Link>
         </Button>
@@ -40,10 +40,10 @@ class Navbar extends React.Component {
 
     return (
       <Button color="inherit">
-        <Link className={classes.iconLink} to="/cryptolator/sign-in/">
+        <Link className={classes.iconLink} to="/sign-in/">
           <OpenInNew className={classes.iconInButton} />
         </Link>
-        <Link className={classes.link} to="/cryptolator/sign-in/">
+        <Link className={classes.link} to="/sign-in/">
           Sign In
         </Link>
       </Button>
@@ -64,10 +64,10 @@ class Navbar extends React.Component {
               <Link className={classes.link} to="/">{APP_NAME}</Link>
             </Typography>
             <Button color="inherit">
-              <Link className={classes.iconLink} to="/cryptolator/app/">
+              <Link className={classes.iconLink} to="/app/">
                 <Apps className={classes.iconInButton} />
               </Link>
-              <Link className={classes.link} to="/cryptolator/app/">
+              <Link className={classes.link} to="/app/">
                 App
               </Link>
             </Button>

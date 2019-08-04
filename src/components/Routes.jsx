@@ -5,18 +5,17 @@ import {
 } from 'react-router-dom';
 
 import Landing from './Landing';
-
-import Terms from './Terms';
+import SignIn from './SignIn';
+import LogOut from './LogOut';
 import Converter from './Converter';
 
 const Routes = () => {
   return (
     <Switch>
       <Route path="/" exact component={Landing} />
-
-      <Route path="/terms/" component={Terms} />
-
-      <Route path="/cryptolator/app/" exact component={Converter} />
+      <Route path="/sign-in/" exact component={SignIn} />
+      <Route path="/log-out/" exact component={LogOut} />
+      <Route path="/app/" exact component={Converter} />
     </Switch>
   )
 };

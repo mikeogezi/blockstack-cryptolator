@@ -396,9 +396,9 @@ class ResultForm extends React.Component {
 
   render () {
     const { classes } = this.props;
-    if (BlockstackUtils.isSignedIn(this)) {
+    if (!BlockstackUtils.isSignedIn(this)) {
       return (
-        <Redirect to='/cryptolator/sign-in/' />
+        <Redirect to='/sign-in/' />
       )
     }
 

@@ -24,7 +24,7 @@ import BlockstackUtils from '../lib/BlockstackUtils';
 
 class SignIn extends React.Component {
   _onClick = async () => {
-    BlockstackUtils.signIn('/bictionary/app/');
+    BlockstackUtils.signIn(this, '/app/');
   }
 
   render () {
