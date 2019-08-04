@@ -1,5 +1,5 @@
 export default class BlockStackUtils {
-  static async isSignedInOrPending (that) {
+  static isSignedInOrPending (that) {
     const session = that.userSession;
 
     if (session.isUserSignedIn()) {
@@ -8,9 +8,10 @@ export default class BlockStackUtils {
     }
     else if (!session.isUserSignedIn() && session.isSignInPending()) {
       console.log('User Sign In Pending');
-      const userData = await session.handlePendingSignIn();
-      console.log('User Data', userData);
-      return false;
+      session.handlePendingSignIn()
+        .then(user => console.log('User Data', user));
+      
+      return true;
     }
     else {
       return false;
