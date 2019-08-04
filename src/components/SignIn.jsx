@@ -20,16 +20,19 @@ import {
 } from '../actions/index';
 import store from '../store/index';
 import { UserSession, AppConfig } from 'blockstack';
+import BlockStackUtils from '../lib/BlockStackUtils';
 
 class SignIn extends React.Component {
   constructor (props) {
     super(props);
 
-    this.userSession = new UserSession();
+    // this.userSession = new UserSession();
+    BlockStackUtils.init(this);
   }
 
   _onClick = async () => {
-    this.userSession.redirectToSignIn('https://blockstack-cryptolator.netlify.com/app/');
+    // this.userSession.redirectToSignIn('https://blockstack-cryptolator.netlify.com/app/');
+    BlockStackUtils.signIn(this);
   }
 
   render () {

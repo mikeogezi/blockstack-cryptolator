@@ -22,8 +22,9 @@ class Navbar extends React.Component {
   constructor (props) {
     super(props);
     
-    this.userSession = new UserSession();
-    window.UserSession = UserSession;
+    // this.userSession = new UserSession();
+    // window.UserSession = UserSession;
+    BlockStackUtils.init();
   }
 
   _renderSignInOrLogOut = (classes) => {

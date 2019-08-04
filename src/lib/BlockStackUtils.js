@@ -28,7 +28,8 @@ export default class BlockStackUtils {
     if (!that.userSession) {
       BlockStackUtils.init(that);
     }
-    that.userSession.redirectToSignIn();
+    const origin = window.location.origin;
+    that.userSession.redirectToSignIn(`${origin}/app/`);
   }
 
   static logOut (that) {

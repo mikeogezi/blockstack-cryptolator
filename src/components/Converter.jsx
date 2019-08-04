@@ -78,7 +78,8 @@ class ResultForm extends React.Component {
       isErrorDialogOpen: false
     };
 
-    this.userSession = new UserSession();
+    // this.userSession = new UserSession();
+    BlockStackUtils.init(this);
   }
 
   componentDidMount () {
@@ -396,7 +397,7 @@ class ResultForm extends React.Component {
 
   render () {
     const { classes } = this.props;
-    
+
     if (!BlockStackUtils.isSignedInOrPending(this)) {
       return (
         <Redirect to='/sign-in/' />
