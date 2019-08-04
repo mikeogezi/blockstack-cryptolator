@@ -14,6 +14,7 @@ export default class BlockStackUtils {
       return true;
     }
     else {
+      console.log('User Not Signed In');
       return false;
     }
   }
