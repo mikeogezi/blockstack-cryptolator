@@ -1,4 +1,10 @@
+import { UserSession } from 'blockstack';
+
 export default class BlockStackUtils {
+  static init (that) {
+    that.userSession = new UserSession();
+  }
+
   static isSignedInOrPending (that) {
     const session = that.userSession;
 
@@ -16,5 +22,19 @@ export default class BlockStackUtils {
     else {
       return false;
     }
+  }
+
+  static signIn (that) {
+    if (!that.userSession) {
+      BlockStackUtils.init(that);
+    }
+    that.userSession.redirectToSignIn();
+  }
+
+  static logOut (that) {
+    if (!that.userSession) {
+      BlockStackUtils.init(that);
+    }
+    that.userSession.signUserOut();
   }
 }
