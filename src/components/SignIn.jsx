@@ -19,13 +19,7 @@ import {
   logOut
 } from '../actions/index';
 import store from '../store/index';
-
-import BlockstackUtils from '../lib/BlockstackUtils';
-
-import { 
-  UserSession,
-  AppConfig
-} from 'blockstack';
+import { UserSession, AppConfig } from 'blockstack';
 
 class SignIn extends React.Component {
   // constructor (props) {
@@ -56,13 +50,14 @@ class SignIn extends React.Component {
   //     )
   // }
 
+  constructor (props) {
+    super(props);
+
+    this.userSession = new UserSession();
+  }
+
   _onClick = async () => {
-    this.appConfig = new AppConfig()
-    this.userSession = new UserSession({
-      appConfig: this.appConfig
-    })
     this.userSession.redirectToSignIn()
-    // BlockstackUtils.signIn(this, '/app/');
   }
 
   render () {

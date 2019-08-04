@@ -7,11 +7,17 @@ import {
 } from "../actions/index";
 import store from '../store/index';
 import { Box } from '@material-ui/core';
-import BlockstackUtils from '../lib/BlockstackUtils';
+import { UserSession } from 'blockstack';
 
 class LogOut extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.userSession = new UserSession();
+  }
+  
   componentWillMount () {
-    BlockstackUtils.signOut();
+    this.userSession.signUserOut('/');
   }
 
   render () {

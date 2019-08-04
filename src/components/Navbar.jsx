@@ -14,22 +14,16 @@ import {
 import { Link } from 'react-router-dom';
 import { APP_NAME } from '../constants/appInfo';
 import { connect } from 'react-redux';
-import BlockstackUtils from '../lib/BlockstackUtils';
 
-import { 
-  UserSession,
-  AppConfig
-} from 'blockstack';
+import { UserSession } from 'blockstack';
 
 class Navbar extends React.Component {
   constructor (props) {
     super(props);
 
     this.state = {};
-    // BlockstackUtils.init(this);
-    this.appConfig = new AppConfig()
-    this.userSession = new UserSession()
-    window.userSession = this.userSession;
+    this.userSession = new UserSession();
+    // window.userSession = this.userSession;
   }
 
   _renderSignInOrLogOut = (classes) => {

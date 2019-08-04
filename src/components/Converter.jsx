@@ -21,9 +21,8 @@ import { Redirect } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import { withStyles } from '@material-ui/core/styles';
 
-import BlockstackUtils from '../lib/BlockstackUtils';
-
 import Select from 'react-select';
+import { UserSession } from 'blockstack';
 
 import { CRYPTOCOMPARE_API_KEY } from '../constants/appInfo';
 import cryptocompare from 'cryptocompare';
@@ -78,7 +77,7 @@ class ResultForm extends React.Component {
       isErrorDialogOpen: false
     };
 
-    BlockstackUtils.init(this);
+    this.userSession = new UserSession();
   }
 
   componentDidMount () {
@@ -396,7 +395,7 @@ class ResultForm extends React.Component {
 
   render () {
     const { classes } = this.props;
-    if (!BlockstackUtils.isSignedIn(this)) {
+    if (!this.userSession.isUserSignedIn()) {
       return (
         <Redirect to='/sign-in/' />
       )
