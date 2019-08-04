@@ -24,7 +24,7 @@ class Navbar extends React.Component {
     
     // this.userSession = new UserSession();
     // window.UserSession = UserSession;
-    BlockStackUtils.init();
+    BlockStackUtils.init(this);
   }
 
   _renderSignInOrLogOut = (classes) => {
