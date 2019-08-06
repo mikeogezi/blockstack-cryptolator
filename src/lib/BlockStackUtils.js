@@ -36,6 +36,6 @@ export default class BlockStackUtils {
     if (!that.userSession) {
       BlockStackUtils.init(that);
     }
-    that.userSession.signUserOut();
+    that.userSession.signUserOut('/');
   }
 }
