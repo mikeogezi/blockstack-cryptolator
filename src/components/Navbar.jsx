@@ -1,83 +1,133 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  SwipeableDrawer,
+  Box,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
   Apps,
   OpenInNew,
+  PersonAdd,
   ExitToApp
 } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { APP_NAME } from '../constants/appInfo';
 import { connect } from 'react-redux';
-
 import { UserSession } from 'blockstack';
 import BlockStackUtils from '../lib/BlockStackUtils';
 
 class Navbar extends React.Component {
   constructor (props) {
     super(props);
-    
-    // this.userSession = new UserSession();
-    // window.UserSession = UserSession;
+
+    this.state = { isDrawerOpen: false };
     BlockStackUtils.init(this);
   }
 
-  _renderSignInOrLogOut = (classes) => {
-    if (BlockStackUtils.isSignedInOrPending(this)) {
-      return (
+  _getMenu (classes) {
+    return [
+      { title: 'Log Out', icon: <ExitToApp className={classes.iconInButton} />, link: '/log-out/' },
+      { title: 'Sign In', icon: <OpenInNew className={classes.iconInButton} />, link: '/sign-in/' },
+      { title: 'App', icon: <Apps className={classes.iconInButton} />, link: '/app/' },
+    ]
+  }
+
+  _visitLink = (link) => {
+    this.props.history.push(link);
+  }
+
+  _shouldShow = (title) => {
+    if ((title === 'Log Out' || title === 'Add Friend') 
+        && BlockStackUtils.isSignedInOrPending(this)) {
+      return 'block';
+    }
+    else if (title === 'Sign In' && !BlockStackUtils.isSignedInOrPending(this)) {
+      return 'block';
+    }
+    else if (title === 'App') {
+      return 'block'
+    }
+    else {
+      return 'none';
+    }
+  }
+
+  _closeDrawer = () => this.setState({ isDrawerOpen: false });
+
+  _openDrawer = () => this.setState({ isDrawerOpen: true });
+
+  _renderSiwpeableDrawer = (classes) => {
+    return (
+      <SwipeableDrawer
+        open={this.state.isDrawerOpen} onOpen={this._openDrawer} onClose={this._closeDrawer}>
+        <Box onClick={this._closeDrawer} onKeyDown={this._closeDrawer}> 
+          <List>
+            {
+              this._getMenu(classes).map(({ title, icon, link }) => (
+                <Box display={this._shouldShow(title)}>
+                  <ListItem button key={title} color="inherit" style={{ marginRight: '16px' }}>
+                    <Link to={link}><ListItemIcon>{icon}</ListItemIcon></Link>
+                    <Link
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                      to={link}>
+                      <ListItemText primary={title} />
+                    </Link>
+                  </ListItem>
+                </Box>
+              ))
+            }
+          </List>
+        </Box>
+      </SwipeableDrawer>
+    )
+  }
+
+  _renderToolbarMenu = (classes) => {
+    const getDisplay = (title) => 
+      this._shouldShow(title) === 'block' ? { xs: 'none', sm: 'none', md: 'block' } : 'none';
+
+    return this._getMenu(classes).map(({ title, icon, link }) => (
+      <Box display={getDisplay(title)} key={title}>
         <Button color="inherit">
-          <Link className={classes.iconLink} to="/log-out/">
-            <ExitToApp className={classes.iconInButton} />
+          <Link className={classes.iconLink} to={link}>
+            {icon}
           </Link>
-          <Link className={classes.link} to="/log-out/">
-            Log Out
+          <Link className={classes.link} to={link}>
+            {title}
           </Link>
         </Button>
-      )
-    }
-
-    return (
-      <Button color="inherit">
-        <Link className={classes.iconLink} to="/sign-in/">
-          <OpenInNew className={classes.iconInButton} />
-        </Link>
-        <Link className={classes.link} to="/sign-in/">
-          Sign In
-        </Link>
-      </Button>
-    )
+      </Box>
+    ))
   }
 
   render () {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <Box className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
+              <MenuIcon onClick={this._openDrawer} />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               <Link className={classes.link} to="/">{APP_NAME}</Link>
             </Typography>
-            <Button color="inherit">
-              <Link className={classes.iconLink} to="/app/">
-                <Apps className={classes.iconInButton} />
-              </Link>
-              <Link className={classes.link} to="/app/">
-                App
-              </Link>
-            </Button>
-            { this._renderSignInOrLogOut(classes) }
+            { this._renderToolbarMenu(classes) }
           </Toolbar>
         </AppBar>
-      </div>
+        { this._renderSiwpeableDrawer(classes) }
+      </Box>
     );
   }
 };
