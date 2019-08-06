@@ -61,7 +61,7 @@ class Landing extends React.Component {
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography variant="body1" align="center">
-                                The {APP_NAME} allows you to convert between all mojor cryptocurrencies and traditional currencies.
+                                The {APP_NAME} allows you to convert between all major cryptocurrencies and traditional currencies. We will be supporting 4,061 by the middle of the month.
                             </Typography>
                         </CardContent>
                         <CardActions>
