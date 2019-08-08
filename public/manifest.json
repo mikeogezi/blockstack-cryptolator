@@ -3,12 +3,12 @@
   "name": "Cryptolator",
   "icons": [
     {
-      "src": "https://blockstack-cryptolator.netlify.com/favicon.png",
+      "src": "https://cryptolator.mklm.xyz/favicon.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "https://blockstack-cryptolator.netlify.com/favicon.ico",
+      "src": "https://cryptolator.mklm.xyz/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
