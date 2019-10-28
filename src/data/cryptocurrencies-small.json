@@ -14,6 +14,13 @@
       "CoinName": "Ethereum",
       "SortOrder": 2
     },
+    "STX": {
+      "ImageUrl": "/media/1383946/stx.png",
+      "Name": "STX",
+      "Symbol": "STX",
+      "CoinName": "Stox",
+      "SortOrder": 15
+    },
     "LTC": {
       "ImageUrl": "/media/35309662/ltc.png",
       "Name": "LTC",
@@ -97,13 +104,6 @@
       "Symbol": "PPC",
       "CoinName": "PeerCoin",
       "SortOrder": 14
-    },
-    "CRAIG": {
-      "ImageUrl": "/media/20022/craig.png",
-      "Name": "CRAIG",
-      "Symbol": "CRAIG",
-      "CoinName": "CraigsCoin",
-      "SortOrder": 15
     }
   },
   "BaseImageUrl": "https://www.cryptocompare.com",
